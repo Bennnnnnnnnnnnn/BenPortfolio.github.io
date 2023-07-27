@@ -32,7 +32,7 @@
 				<!-- One -->
 					<section id="one">
 						<header class="major">
-							<h2>Introducing Niche Industry Solutions: Empowering Businesses with Data Insights</h2>
+							<h2>Niche Industry Solutions: Empowering Business with Data</h2>
 						</header>
 						<p>
 
@@ -65,12 +65,28 @@
 					<section>
 						<header class="major">
 							<h2>Recent Work</h2>
+						  </header>
+						  <div>
+							<label for="category-select">Select a category:</label>
+							<select id="category-select">
+							  <option value="all">All</option>
+							  <option value="General">General Examples</option>
+							  <option value="Construction">Industry Examples</option>
+							  <option value="Social">Social Examples</option>
+							  <option value="Agriculture">Agriculture Examples</option>
+
+							</select>
+						  </div>
+						<header class="major">
+							<br />
+							<br />
 						</header>
 						<div class="posts">
 							
-							<article>
-								<a href="AQ.html" class="image"><img src="images/AQDash.jpg" alt="" style="width:250px;height:300px;" /></a>
+							<article class="Construction">
 								<h3>AutoQuote Dashboard</h3>
+								<a href="AQ.html" class="image"><img src="images/AQDash.jpg" alt="" style="width:250px;height:300px;" /></a>
+								
 								<p>A project put together for a client that uses a dataset I gathered from the client to predict the cost of customers future quotes, using a mixture of appscript and googlesheets formulas.</p>
 							</p>
 								<ul class="actions">
@@ -78,9 +94,10 @@
 								</ul>
 							</article>
 							
-							<article>
-								<a href="CarScrape.html" class="image"><img src="images/pic1.jpg" alt="" style="width:250px;height:300px;" /></a>
+							<article class="General" >
 								<h3>Car Data, Webscrape and Analysis with python</h3>
+								<a href="CarScrape.html" class="image"><img src="images/pic1.jpg" alt="" style="width:250px;height:300px;" /></a>
+								
 								<p>This project aims to answer a question, what price should I sell a used Hyundai made in 2009 with 90837 kms on the ODO?
 									This projects uses a combination of webscraping and data analysis to answer this question using python.</p>
 								<ul class="actions">
@@ -88,12 +105,33 @@
 								</ul>
 							</article>
 							
-							<article>
-								<a href="SASSWork.html" class="image"><img src="images/dashboardpreveiw.png" alt="" style="width:300px;height:300px;"/></a>
+							<article class="Social">
 								<h3>Demographic and Team KPIs Dashboards</h3>
+								<a href="SASSWork.html" class="image"><img src="images/dashboardpreveiw.png" alt="" style="width:300px;height:300px;"/></a>
+								
 								<p>Work for SASS Tasmania that included 15 Dashboards and visualisations aswell as a native application to access these.</p>
 								<ul class="actions">
 									<li><a href="SASSWork.html" class="button">Veiw Project Live</a></li>
+								</ul>
+							</article>
+
+							<article class="Agriculture">
+								<h3>Crop Yield Dashboard</h3>
+								<a href="CropYield.html" class="image"><img src="images/cropboard preview.png" alt="" style="width:300px;height:300px;"/></a>
+								
+								<p>An example dashboard demonstrating what N.I.S can do for farmers. uses example data.</p>
+								<ul class="actions">
+									<li><a href="CropYield.html" class="button">Veiw Project Live</a></li>
+								</ul>
+							</article>
+
+							<article class="Agriculture">
+								<h3>Sheep Yield Dashboard</h3>
+								<a href="SheepYield.html" class="image"><img src="images/sheepboard preview.png" alt="" style="width:300px;height:300px;"/></a>
+								
+								<p>An example dashboard demonstrating what N.I.S can do for sheep farmers. Source: https://catalogue.data.govt.nz/dataset/agricultural-production-statistics</p>
+								<ul class="actions">
+									<li><a href="SheepYield.html" class="button">Veiw Project Live</a></li>
 								</ul>
 							</article>
 				
@@ -158,6 +196,24 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+
+			<script>
+				(function() {
+				  const categorySelect = document.getElementById('category-select');
+				  const articles = document.querySelectorAll('.posts article');
+			  
+				  categorySelect.addEventListener('change', () => {
+					const selectedCategory = categorySelect.value;
+					articles.forEach(article => {
+					  if (selectedCategory === 'all' || article.classList.contains(selectedCategory)) {
+						article.style.display = 'block';
+					  } else {
+						article.style.display = 'none';
+					  }
+					});
+				  });
+				})();
+			  </script>
 
 	</body>
 </html>
