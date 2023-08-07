@@ -63,10 +63,20 @@
 
 					<!-- Section -->
 					<section>
-						<header class="major">
-							<h2>Recent Work</h2>
-						  </header>
+						<div class="row" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+							<div class="column">
+							  <header class="major">
+								<h2>Recent Work</h2>
+							  </header>
+							</div>
+							<div class="column" style="text-align: right;">
+							  <header class="major">
+								<h2>Products</h2>
+							  </header>
+							</div>
+						  </div>
 						  <div>
+							
 							<label for="category-select">Select a category:</label>
 							<select id="category-select">
 							  <option value="all">All</option>
@@ -74,8 +84,9 @@
 							  <option value="Construction">Industry Examples</option>
 							  <option value="Social">Social Examples</option>
 							  <option value="Agriculture">Agriculture Examples</option>
-
+							  <option value="recent-work" class="recent-work">Recent Work</option>
 							</select>
+							
 						  </div>
 						<header class="major">
 							<br />
@@ -83,7 +94,7 @@
 						</header>
 						<div class="posts">
 							
-							<article class="Construction">
+							<article class="Construction recent-work">
 								<h3>AutoQuote Dashboard</h3>
 								<a href="AQ.html" class="image"><img src="images/AQDash.jpg" alt="" style="width:250px;height:300px;" /></a>
 								
@@ -94,7 +105,7 @@
 								</ul>
 							</article>
 							
-							<article class="General" >
+							<article class="General recent-work" >
 								<h3>Car Data, Webscrape and Analysis with python</h3>
 								<a href="CarScrape.html" class="image"><img src="images/pic1.jpg" alt="" style="width:250px;height:300px;" /></a>
 								
@@ -105,8 +116,8 @@
 								</ul>
 							</article>
 							
-							<article class="Social">
-								<h3>Demographic and Team KPIs Dashboards</h3>
+							<article class="Social recent-work">
+								<h3>Demographic and Team KPIs Dashboards for SASS Tasmania</h3>
 								<a href="SASSWork.html" class="image"><img src="images/dashboardpreveiw.png" alt="" style="width:300px;height:300px;"/></a>
 								
 								<p>Work for SASS Tasmania that included 15 Dashboards and visualisations aswell as a native application to access these.</p>
@@ -115,7 +126,7 @@
 								</ul>
 							</article>
 
-							<article class="Agriculture">
+							<article class="Agriculture recent-work">
 								<h3>Crop Yield Dashboard</h3>
 								<a href="CropYield.html" class="image"><img src="images/cropboard preview.png" alt="" style="width:300px;height:300px;"/></a>
 								
@@ -125,7 +136,7 @@
 								</ul>
 							</article>
 
-							<article class="Agriculture">
+							<article class="Agriculture recent-work">
 								<h3>Sheep Yield Dashboard</h3>
 								<a href="SheepYield.html" class="image"><img src="images/sheepboard preview.png" alt="" style="width:300px;height:300px;"/></a>
 								
@@ -133,6 +144,14 @@
 								<ul class="actions">
 									<li><a href="SheepYield.html" class="button">Veiw Project Live</a></li>
 								</ul>
+							</article>
+
+							<article class="product">
+								<h3>Terrarium</h3>
+								<body>
+									<p>Terrarium is an advanced software container hosting a suite of data management plugins. Elevate your data manipulation, analysis, and visualization with its intuitive interface. Tailor your workspace, seamlessly integrating plugins to suit your unique needs. Streamline workflow, ensuring compatibility with various data formats. Collaborate effortlessly and unlock the full potential of your data with Terrarium's powerful and versatile platform.</p>
+									<iframe src="Terrariumindex.html" width="1150" height="900"></iframe>
+								</body>
 							</article>
 				
 				<!-- Three -->
@@ -198,21 +217,66 @@
 			<script src="assets/js/main.js"></script>
 
 			<script>
-				(function() {
-				  const categorySelect = document.getElementById('category-select');
-				  const articles = document.querySelectorAll('.posts article');
-			  
-				  categorySelect.addEventListener('change', () => {
+				function filterArticles() {
+					const categorySelect = document.getElementById('category-select');
+					const articles = document.querySelectorAll('.posts article');
+
+					categorySelect.addEventListener('change', () => {
 					const selectedCategory = categorySelect.value;
 					articles.forEach(article => {
-					  if (selectedCategory === 'all' || article.classList.contains(selectedCategory)) {
+						if (selectedCategory === 'all' || article.classList.contains(selectedCategory)) {
 						article.style.display = 'block';
-					  } else {
+						} else {
 						article.style.display = 'none';
-					  }
+						}
 					});
-				  });
-				})();
+					});
+				}
+
+				function toggleRecentWork() {
+					const productsHeader = document.querySelector('.column:last-of-type h2');
+					const recentWorkHeader = document.querySelector('.column:first-of-type h2');
+					const articles = document.querySelectorAll('.posts article');
+					const categorySelect = document.querySelector('#category-select');
+					const categoryLabel = document.querySelector('label[for="category-select"]');
+
+					// Hide articles with class "product" by default
+					articles.forEach(article => {
+						if (article.classList.contains('product')) {
+						article.style.display = 'none';
+						}
+					});
+
+					productsHeader.addEventListener('click', () => {
+						articles.forEach(article => {
+						if (article.classList.contains('recent-work')) {
+							article.style.display = 'none';
+							categorySelect.style.display = 'none';
+							categoryLabel.style.display = 'none';
+						} else if (article.classList.contains('product')) {
+							article.style.display = 'block';
+						}
+						});
+						productsHeader.classList.add('selected'); // Add selected class to clicked title
+						recentWorkHeader.classList.remove('selected'); // Remove selected class from other title
+					});
+
+					recentWorkHeader.addEventListener('click', () => {
+						articles.forEach(article => {
+						if (article.classList.contains('product')) {
+							article.style.display = 'none';
+						} else if (article.classList.contains('recent-work')) {
+							article.style.display = 'block';
+							categorySelect.style.display = 'block';
+							categoryLabel.style.display = 'block';
+						}
+						});
+						recentWorkHeader.classList.add('selected'); // Add selected class to clicked title
+						productsHeader.classList.remove('selected'); // Remove selected class from other title
+					});
+					}
+				filterArticles();
+				toggleRecentWork();
 			  </script>
 
 	</body>
