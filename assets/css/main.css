@@ -3220,3 +3220,13 @@ input, select, textarea {
 
 	}
 	
+	
+	.column h2:hover {
+		color: #ff4500; /* Change the color to your desired hover color */
+		cursor: pointer;
+		border-bottom: 2px solid #ff4500; /* Change the color and thickness to your desired values */
+	  }
+	  .column h2.selected {
+		color: #ff4500; /* Change the color to your desired selected color */
+		border-bottom: 2px solid #ff4500; /* Change the color and thickness to your desired values */
+	  }
