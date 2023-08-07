@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>NisHub by N.I.S</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="Terrariumtemplates/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="Terrariumtemplates/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+		<header id="header">
+			<div class="content">
+				<div class="circle">
+					<h1 id="welcome-header">Welcome!</h1>					
+					<p id="plugin-description">This is the container for your data ecosystem, select a plugin to begin.</p>
+				</div>
+			  <ul class="actions">
+				<li>
+					<div class="image-holder">
+						<img src="Terrariumtemplates/images/WolfSpider.png" alt="Wolf Spider"  data-plugin-name="Wolf Spider">
+						<img src="Terrariumtemplates/images/Wombat.png" alt="Wombat"  data-plugin-name="Wombat">
+						<img src="Terrariumtemplates/images/Sentipede.png" alt="Sentipede"  data-plugin-name="Sentipede">
+						<img src="Terrariumtemplates/images/Possum.png" alt="Possum"  data-plugin-name="Possum">
+						<img src="Terrariumtemplates/images/Bonsai.png" alt="Bonsai"  data-plugin-name="Bonsai">
+						<img src="Terrariumtemplates/images/Millipede.png" alt="Millipede"  data-plugin-name="Millipede">
+						<img src="Terrariumtemplates/images/Tarantula.png" alt="Tarantula"  data-plugin-name="Tarantula">
+					</div>
+				  </li>
+			  </ul>
+			</div>
+			
+		  </header>
+
+		<!-- Main -->
+		
+		
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		  
+		<script>
+			function addPluginImageEventListeners() {
+            const pluginImages = document.querySelectorAll('.image-holder img');
+            const pluginDescription = document.getElementById('plugin-description');
+            const welcomeHeader = document.getElementById('welcome-header');
+
+            fetch('Terrariumtemplates/plugins.json')
+                .then(response => response.json())
+                .then(plugins => {
+                    pluginImages.forEach((image, index) => {
+                        const pluginName = Object.keys(plugins)[index];
+                        image.dataset.pluginDescription = plugins[pluginName];
+                        image.dataset.pluginName = pluginName;
+                        image.addEventListener('mouseover', () => {
+                            pluginDescription.textContent = image.dataset.pluginDescription;
+                            welcomeHeader.textContent = image.dataset.pluginName;
+                        });
+                        image.addEventListener('mouseout', () => {
+                            pluginDescription.textContent = 'This is the container for your data ecosystem, select a plugin to begin.';
+                            welcomeHeader.textContent = 'Welcome!';
+                        });
+                    });
+                })
+                .catch(error => console.error(error));
+        }
+
+        addPluginImageEventListeners();
+			
+			
+		
+
+				const images = document.getElementsByTagName('img');
+				const sampleText = document.getElementById('sample-text');
+
+				for (let i = 0; i < images.length; i++) {
+				images[i].addEventListener('mouseover', function() {
+					sampleText.innerHTML = this.getAttribute('data-text');
+				});
+				}
+
+				function stopRotate8Animations() {
+				const imageHolder = document.querySelector('.image-holder');
+				const images = imageHolder.querySelectorAll('img');
+
+				images.forEach(image => {
+					if (!image.classList.contains('hovered')) {
+					image.style.animationPlayState = 'paused';
+					}
+				});
+				}
+
+				function resumeRotate8Animations() {
+				const imageHolder = document.querySelector('.image-holder');
+				const images = imageHolder.querySelectorAll('img');
+
+				images.forEach(image => {
+					image.style.animationPlayState = 'running';
+				});
+				}
+
+				const imageHolder = document.querySelector('.image-holder');
+
+				imageHolder.addEventListener('mouseover', stopRotate8Animations);
+				imageHolder.addEventListener('mouseout', resumeRotate8Animations);
+			</script>		
+	</body>
+</html>
