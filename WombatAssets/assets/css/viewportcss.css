@@ -1,0 +1,97 @@
+.iframe-container {
+    display: flex;
+    justify-content: space-between;
+    position: relative; /* Added */
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 20px;
+}
+
+.resizable-window {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 250px;
+    border: 2px solid #000;
+    background: rgba(255, 255, 255, 0.5);
+    z-index: 2;
+    pointer-events: none; /* Added */
+}
+
+
+.content {
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.top, .bottom {
+    left: 0;
+    right: 0;
+}
+
+.left, .right {
+    top: 0;
+    bottom: 0;
+}            
+
+.ui-resizable-handle {
+    background-color: #000;
+    width: 16px;
+    height: 16px;
+    pointer-events: auto; /* Make the handles interactive */
+}
+
+.ui-resizable-n {
+    cursor: n-resize;
+    height: 7px;
+    width: 7px;
+    top: -5px;
+    left: 50%;
+    margin-left: -5px;
+}
+
+.ui-resizable-e {
+    cursor: e-resize;
+    width: 7px;
+    height: 7px;
+    top: 50%;
+    right: -5px;
+    margin-top: -5px;
+}
+
+.ui-resizable-s {
+    cursor: s-resize;
+    height: 7px;
+    width: 7px;
+    bottom: -5px;
+    left: 50%;
+    margin-left: -5px;
+}
+
+.ui-resizable-w {
+    cursor: w-resize;
+    width: 7px;
+    height: 7px;
+    top: 50%;
+    left: -5px;
+    margin-top: -5px;
+}
+.handle {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 30px; /* Adjust the size of the icon */
+    color: black; /* Color of the icon */
+    cursor: move;
+    pointer-events: auto;
+}
